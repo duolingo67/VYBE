@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>VYBE</title>
+</head>
+<body>
+
+<header class="topbar">
+  <span class="logo">VYBE</span>
+  <span class="aura">🔥 <span id="aura">0</span></span>
+</header>
+
+<!-- AUTH -->
+<div id="authScreen" class="auth">
+  <h2>Welcome to VYBE</h2>
+  <input id="username" placeholder="Username">
+  <button onclick="login()">Enter</button>
+  <p>No followers. Only Aura.</p>
+</div>
+
+<!-- POST BUTTON -->
+<button class="postBtn hidden" onclick="openPost()">＋</button>
+
+<!-- POST MODAL -->
+<div id="postModal" class="modal hidden">
+  <div class="modalBox">
+    <h3>Create a VYBE</h3>
+    <input id="postText" placeholder="Describe your video">
+    <input id="postEmoji" placeholder="Emoji (🎬🔥🎵)">
+    <button onclick="createPost()">Post</button>
+    <button onclick="closePost()">Cancel</button>
+  </div>
+</div>
+
+<!-- FEED -->
+<main class="feed hidden" id="feed"></main>
+
+<script src="script.js"></script>
+</body>
+</html>
