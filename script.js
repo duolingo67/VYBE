@@ -1,13 +1,24 @@
 let aura = 0;
 let posts = [];
 
+// FORCE MODAL CLOSED ON LOAD
+window.onload = () => {
+  closePost();
+};
+
 function login() {
   const user = document.getElementById("username").value;
   if (!user) return;
 
   localStorage.setItem("vybeUser", user);
-  localStorage.setItem("vybeAura", 50);
-  localStorage.setItem("vybePosts", JSON.stringify([]));
+
+  if (!localStorage.getItem("vybeAura")) {
+    localStorage.setItem("vybeAura", 50);
+  }
+
+  if (!localStorage.getItem("vybePosts")) {
+    localStorage.setItem("vybePosts", JSON.stringify([]));
+  }
 
   startApp();
 }
@@ -20,6 +31,7 @@ function startApp() {
   posts = JSON.parse(localStorage.getItem("vybePosts")) || [];
 
   document.getElementById("authScreen").classList.add("hidden");
+  document.getElementById("postModal").classList.add("hidden");
   document.querySelector(".feed").classList.remove("hidden");
   document.querySelector(".postBtn").classList.remove("hidden");
 
@@ -45,6 +57,9 @@ function createPost() {
 
   posts.unshift({ user, text, emoji });
   localStorage.setItem("vybePosts", JSON.stringify(posts));
+
+  document.getElementById("postText").value = "";
+  document.getElementById("postEmoji").value = "";
 
   closePost();
   renderFeed();
